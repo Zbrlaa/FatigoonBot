@@ -18,6 +18,12 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.4.14</version>
+		</dependency>
+
 		<!-- Discord4J -->
 		<dependency>
 			<groupId>com.discord4j</groupId>

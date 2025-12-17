@@ -20,7 +20,7 @@ public class App {
 		// 1. Chargement de la config
 		Dotenv dotenv = Dotenv.load();
 		String token = dotenv.get("DISCORD_TOKEN");
-		String apiUrl = dotenv.get("API_URL", "http://localhost:8080"); // Valeur par défaut si non présent
+		String apiUrl = dotenv.get("API_URL", "http://localhost:8080/v1");
 
 		// 2. Initialisation des services (Dependency Injection manuelle)
 		FatigoonApiClient apiClient = new FatigoonApiClient(apiUrl);

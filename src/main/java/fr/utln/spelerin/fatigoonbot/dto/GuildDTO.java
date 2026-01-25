@@ -6,6 +6,7 @@ import java.util.Set;
 public record GuildDTO(
 	long id,
 	String name,
+	Long ownerId,
 	Set<Long> userIds,
 	Set<Long> roleIds,
 	Set<Long> channelIds

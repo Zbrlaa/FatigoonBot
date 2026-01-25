@@ -7,6 +7,7 @@ import fr.utln.spelerin.fatigoonbot.dto.createdto.ChannelCreateDTO;
 import fr.utln.spelerin.fatigoonbot.dto.createdto.GuildCreateDTO;
 import fr.utln.spelerin.fatigoonbot.dto.createdto.RoleCreateDTO;
 import fr.utln.spelerin.fatigoonbot.dto.createdto.UserCreateDTO;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -15,10 +16,12 @@ import java.net.http.HttpResponse;
 import java.time.Duration;
 import java.util.concurrent.CompletableFuture;
 
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
+@ApplicationScoped
 public class FatigoonApiClient {
 	private static final Logger log = LoggerFactory.getLogger(FatigoonApiClient.class);
 	
@@ -26,7 +29,7 @@ public class FatigoonApiClient {
 	private final ObjectMapper objectMapper;
 	private final String baseUrl;
 
-	public FatigoonApiClient(String baseUrl) {
+	public FatigoonApiClient(@ConfigProperty(name = "api.url", defaultValue = "http://localhost:8080/v1") String baseUrl) {
 		this.baseUrl = baseUrl;
 		this.objectMapper = new ObjectMapper();
 		this.httpClient = HttpClient.newBuilder()
@@ -97,8 +100,8 @@ public class FatigoonApiClient {
 	}
 
 	public CompletableFuture<Void> addRoleToChannel(long channelId, long roleId) {
-        return put("/channels/" + channelId + "/roles/" + roleId); //
-    }
+		return put("/channels/" + channelId + "/roles/" + roleId); //
+	}
 
 
 	// --- Users ---
@@ -107,6 +110,6 @@ public class FatigoonApiClient {
 	}
 
 	public CompletableFuture<Void> addRoleToUser(long userId, long roleId) {
-        return put("/users/" + userId + "/roles/" + roleId); //
-    }
+		return put("/users/" + userId + "/roles/" + roleId); //
+	}
 }

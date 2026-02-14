@@ -9,5 +9,6 @@ public record GuildDTO(
 	Long ownerId,
 	Set<Long> userIds,
 	Set<Long> roleIds,
-	Set<Long> channelIds
+	Set<Long> channelIds,
+	Set<Long> invitationIds
 ){}
